@@ -4,12 +4,9 @@ def increment_string(strng):
     if number != []:
         znumber = str(int(number[0])+1).zfill(len(number[0]))
         strng = re.sub(rf"{number}+$", '', strng)
-        strng = strng+znumber
-        return(strng)
-    elif number == []:
+        return(strng+znumber)
+    elif number == [] or strng == '':
         return strng+'1'
-    elif strng == '':
-        return '1'
         
 print(increment_string('foobar10001'))
 print(increment_string('foobar'))
