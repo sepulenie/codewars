@@ -1,17 +1,18 @@
+import re
 def increment_string(strng):
-    strng = strng[::-1]
-    if strng != '':
-        for char in range(0, len(strng)):
-            if strng[char].isalpha():
-                word = str(strng[char:])[::-1]
-                number = str(strng[:char])[::-1] if strng[:char] != '' else '0'
-                znumber = str(int(number)+1).zfill(len(number))
-                return word+znumber
-    else:
-        return "1"
-
-
-print(increment_string('foobar100'))
-increment_string('foobar')
-increment_string('foobar0100')
+    number = (re.findall(r"[0-9]+$", strng))
+    if number != []:
+        znumber = str(int(number[0])+1).zfill(len(number[0]))
+        strng = re.sub(rf"{number}+$", '', strng)
+        strng = strng+znumber
+        return(strng)
+    elif number == []:
+        return strng+'1'
+    elif strng == '':
+        return '1'
+        
+print(increment_string('foobar10001'))
+print(increment_string('foobar'))
+print(increment_string('227'))
 print(increment_string(''))
+print(increment_string(')c]hFsL?Q33041577y7nT=G19120329w%jaJja]38276138TT,"9209878200000094567"'))
