@@ -1,18 +1,7 @@
-import re
-def increment_string(strng):
-    number = (re.findall(r"[0-9]+$", strng))
-    if number != []:
-        znumber = str(int(number[0])+1).zfill(len(number[0]))
-        strng = re.sub(rf"{number}+$", '', strng)
-        strng = strng+znumber
-        return(strng)
-    elif number == []:
-        return strng+'1'
-    elif strng == '':
-        return '1'
-        
-print(increment_string('foobar10001'))
-print(increment_string('foobar'))
-print(increment_string('227'))
-print(increment_string(''))
-print(increment_string(')c]hFsL?Q33041577y7nT=G19120329w%jaJja]38276138TT,"9209878200000094567"'))
+s = 18061788945
+y = s//31536000
+d = (s - (31536000*y))//86400
+h = (s - (31536000*y) - (86400*d))//3600
+m = (s - (31536000*y) - (86400*d) - (3600*h))//60
+S =(s - (31536000*y) - (86400*d) - (3600*h) - (60*m))
+print (y, d, h, m, S)
