@@ -1,8 +1,9 @@
 def format_duration(input_seconds):
+    if input_seconds == 0: return 'now'
     def stringofication(input):
-        value, name = str(input[0]), input[1]
+        value, name = input[0], input[1]
         if value != '0':
-            string = value+' '+name+'s' if value[-1] in ['0', '2', '3', '4', '5', '6', '7', '8', '9'] or (len(value) > 1 and value[-2] == '1') else value+' '+name
+            string = str(value)+' '+name+'s' if value > 1 else str(value)+' '+name
             return string
     seconds = input_seconds
     year = [(seconds//31536000), 'year']
@@ -10,6 +11,14 @@ def format_duration(input_seconds):
     hour = [(seconds - (31536000*year[0]) - (86400*day[0]))//3600, 'hour']
     minute = [(seconds - (31536000*year[0]) - (86400*day[0]) - (3600*hour[0]))//60, 'minute']
     second = [(seconds - (31536000*year[0]) - (86400*day[0]) - (3600*hour[0]) - (60*minute[0])), 'second']
-    return list(map(stringofication, filter(lambda n: n[0] != 0, [year, day, hour, minute, second])))
-
-print(format_duration(50004545450))
+    numlist = list(map(stringofication, filter(lambda n: n[0] != 0, [year, day, hour, minute, second])))
+    fstring = ''
+    for n in range(0, len(numlist)):
+        if n < len(numlist)-2:
+            fstring = fstring+(str(numlist[n])+', ')
+        elif n == len(numlist)-2:
+            fstring = fstring+(str(numlist[n])+' and ')
+            break
+    fstring = fstring+(str(numlist[len(numlist)-1]))
+    return fstring
+print(format_duration(0))

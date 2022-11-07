@@ -1,7 +1,9 @@
-s = 18061788945
-y = s//31536000
-d = (s - (31536000*y))//86400
-h = (s - (31536000*y) - (86400*d))//3600
-m = (s - (31536000*y) - (86400*d) - (3600*h))//60
-S =(s - (31536000*y) - (86400*d) - (3600*h) - (60*m))
-print (y, d, h, m, S)
+def stringofication(input):
+    value, name = input[0], input[1]
+    if value != '0':
+        string = str(value)+' '+name+'s' if value > 1 else str(value)+' '+name
+        return string
+
+
+print(stringofication([22, 'second']))
+print(stringofication([1, 'minute']))
