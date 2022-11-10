@@ -1,7 +1,10 @@
-s = 18061788945
-y = s//31536000
-d = (s - (31536000*y))//86400
-h = (s - (31536000*y) - (86400*d))//3600
-m = (s - (31536000*y) - (86400*d) - (3600*h))//60
-S =(s - (31536000*y) - (86400*d) - (3600*h) - (60*m))
-print (y, d, h, m, S)
+value1, value2, value3 = "8923645893726583765", "9384928364923649236492379047234", ""
+ 
+overflow = 0
+for i, (number1, number2) in enumerate(zip(value1[::-1], value2[::-1])):
+    overflow, result = divmod(int(number1) + int(number2) + overflow, 10)
+    value3 = f"{value3}{result}"
+if overflow:
+    value3 = f"{overflow}{value3}"
+ 
+print(value3)
